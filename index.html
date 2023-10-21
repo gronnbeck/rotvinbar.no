@@ -5,44 +5,83 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="https://cdn.tailwindcss.com"></script>
         <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
-        <style>
-            body {
-                background-color: beige;
-                color: teal;
-            }
-        </style>
+        <link href="style.css" rel="stylesheet" />
     </head>
     <body>
-        <div class="md:container mx-auto flex">
-            <div class="inline-block mx-auto">LOGO</div>
+        <div class="absolute top-0 left-0 right-0 flex justify-end p-3 md:justify-center">
+            <button id="menu-open" class="text-white">Menu</button>
         </div>
-        <div class="md:container mx-auto flex">
-            <div class="inline-block mx-auto">
-                Illustrasjon
+        <div id="rot-art" class="fullwidth"></div>
+        <div id="content" class="hidden absolute top-0 left-0 bottom-0 right-0 bg-slate-50 bg-opacity-60">
+            <div class="flex justify-end p-3 text-white md:justify-center">
+                <button id="menu-close">Close</button>
+            </div>
+            <div class="md:container mx-auto flex">
+                <div class="inline-block mx-auto">LOGO</div>
+            </div>
+            <div class="md:container mx-auto flex">
+                <div class="inline-block mx-auto">
+                    Illustrasjon
+                </div>
+            </div>
+            <div class="md:container mx-auto flex">
+                <div class="inline-block mx-auto">
+                    Vinliste
+                </div>
+            </div>
+            <div class="md:container mx-auto flex">
+                <div class="inline-block mx-auto">
+                    Åpningstider
+                    <ul>
+                        <li>Man-ons: stengt</li>
+                        <li>Tor: <time>17:00</time> – <time>24:00</time></li>
+                        <li>Fre: <time>17:00</time> – <time>sent</time></li>
+                        <li>Lør: <time>12:00</time> – <time>sent</time></li>
+                        <li>Søn: stengt</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="md:container mx-auto flex">
+                <div class="inline-block mx-auto">
+                    <i class="lni lni-facebook"></i>
+                    <i class="lni lni-instagram"></i>
+                </div>
             </div>
         </div>
-        <div class="md:container mx-auto flex">
-            <div class="inline-block mx-auto">
-                Vinliste
-            </div>
-        </div>
-        <div class="md:container mx-auto flex">
-            <div class="inline-block mx-auto">
-                Åpningstider
-                <ul>
-                    <li>Man-ons: stengt</li>
-                    <li>Tor: <time>17:00</time> – <time>24:00</time></li>
-                    <li>Fre: <time>17:00</time> – <time>sent</time></li>
-                    <li>Lør: <time>12:00</time> – <time>sent</time></li>
-                    <li>Søn: stengt</li>
-                </ul>
-            </div>
-        </div>
-        <div class="md:container mx-auto flex">
-            <div class="inline-block mx-auto">
-                <i class="lni lni-facebook"></i>
-                <i class="lni lni-instagram"></i>
-            </div>
-        </div>
+        <script>
+            function toggleBlurImage() {
+                var element = document.getElementById("rot-art")
+                if (element.classList.contains("blur-md")) {
+                    element.classList.remove("blur-md")
+                } else {
+                    element.classList.add("blur-md")
+                }
+            }
+            function toggleMenu() {
+                var element = document.getElementById("content")
+                if (element.classList.contains("hidden")) {
+                    element.classList.remove("hidden")
+                } else {
+                    element.classList.add("hidden")
+                }
+            }
+
+            function onClickMenu() {
+                toggleMenu()
+                toggleBlurImage()
+            }
+
+            function onClickMenuToggle(htmlId) {
+                var element = document.getElementById(htmlId)
+                element.onclick = onClickMenu
+            } 
+
+            function onload() {
+                onClickMenuToggle("menu-open")
+                onClickMenuToggle("menu-close")
+            }
+
+            document.onload = onload()
+        </script>
     </body>
 </html>
