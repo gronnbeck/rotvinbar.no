@@ -8,15 +8,26 @@
         <link href="style.css" rel="stylesheet" />
     </head>
     <body>
-        <div class="absolute top-0 left-0 right-0 flex justify-end md:justify-center text-2xl">
-            <button id="menu-open" class="p-4 text-white">R</button>
+        <div id="rot-art" class="fullwidth mt-14"></div>
+        <div id="nav" class="absolute top-0 left-0 right-0 h-14 flex justify-end md:justify-center text-2xl">
+            <button id="menu-open" class="p-4 text-black">
+                <svg class="text-white w-7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10" stroke="#000" stroke-width=".6" fill="rgba(0,0,0,0)" stroke-linecap="round" style="cursor: pointer">
+                    <path d="M2,3L5,3L8,3M2,5L8,5M2,7L5,7L8,7">
+                      <animate dur="0.2s" attributeName="d" values="M2,3L5,3L8,3M2,5L8,5M2,7L5,7L8,7;M3,3L5,5L7,3M5,5L5,5M3,7L5,5L7,7" fill="freeze" begin="start.begin" />
+                      <animate dur="0.2s" attributeName="d" values="M3,3L5,5L7,3M5,5L5,5M3,7L5,5L7,7;M2,3L5,3L8,3M2,5L8,5M2,7L5,7L8,7" fill="freeze" begin="reverse.begin" />
+                    </path>
+                    <rect width="10" height="10" stroke="none">
+                      <animate dur="2s" id="reverse" attributeName="width" begin="click" />
+                    </rect>
+                    <rect width="10" height="10" stroke="none">
+                      <animate dur="0.001s" id="start" attributeName="width" values="10;0" fill="freeze" begin="click" />
+                      <animate dur="0.001s" attributeName="width" values="0;10" fill="freeze" begin="reverse.begin" />
+                    </rect>
+                  </svg>
+            </button>
         </div>
-        <div id="rot-art" class="fullwidth"></div>
-        <div id="content" class="hidden absolute top-0 left-0 bottom-0 right-0 bg-slate-50 bg-opacity-60">
+        <div id="content" class="hidden absolute top-14 left-0 bottom-0 right-0 bg-slate-50 bg-opacity-90 pt-14">
             <div class="flex flex-col gap-8 text-2xl">
-                <div class="flex justify-end p-4 text-white md:justify-center">
-                    <button id="menu-close">X</button>
-                </div>
                 <div class="md:container mx-auto flex">
                     <img class="mx-auto w-48" src="assets/logo.svg" />
                 </div>
@@ -59,15 +70,7 @@
             </div>
         </div>
         <script>
-            function toggleBlurImage() {
-                var element = document.getElementById("rot-art")
-                if (element.classList.contains("blur-md")) {
-                    element.classList.remove("blur-md")
-                } else {
-                    element.classList.add("blur-md")
-                }
-            }
-            function toggleMenu() {
+            function toggleContent() {
                 var element = document.getElementById("content")
                 if (element.classList.contains("hidden")) {
                     element.classList.remove("hidden")
@@ -76,9 +79,20 @@
                 }
             }
 
+            function addBackgroundNav() {
+                var element = document.getElementById("nav")
+                if (element.classList.contains("bg-slate-50")) {
+                    element.classList.remove("bg-slate-50")
+                    element.classList.remove("bg-opacity-60")
+                } else {
+                    element.classList.add("bg-slate-50")
+                    element.classList.add("bg-opacity-60")
+                }
+            }
+
             function onClickMenu() {
-                toggleMenu()
-                toggleBlurImage()
+                toggleContent()
+                addBackgroundNav()
             }
 
             function onClickMenuToggle(htmlId) {
@@ -88,7 +102,6 @@
 
             function onload() {
                 onClickMenuToggle("menu-open")
-                onClickMenuToggle("menu-close")
             }
 
             document.onload = onload()

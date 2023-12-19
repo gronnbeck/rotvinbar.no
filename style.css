@@ -1,9 +1,8 @@
 .fullwidth {
-    background-position: center; 
+    background-position: top; 
     background-repeat: no-repeat;
-    background-size: cover;
-    background-position-y: -25px;
-    height: 100vh;
+    background-size: contain;
+    height: calc(100vh - 5rem);
     width: 100vw;
 }
 
