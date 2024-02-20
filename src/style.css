@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.fullwidth {
+    background-position: top; 
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: calc(100vh - 5rem);
+    width: 100vw;
+}
+
+@media (prefers-color-scheme: dark) {
+    .fullwidth {
+        background-image: url('assets/Night-Time.jpg');
+    }
+    .fullwidth.theme-light {
+        background-image: url('assets/Day-Time.jpg');
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    .fullwidth {
+        background-image: url('assets/Day-Time.jpg');
+    }
+    .fullwidth.theme-dark {
+        background-image: url('assets/Night-Time.jpg');
+    }
+}
+
